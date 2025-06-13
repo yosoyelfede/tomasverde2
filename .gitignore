@@ -36,9 +36,9 @@ logs
 *.sass.map
 *.scss.map
 
-# Compiled CSS
-css/styles.css
-css/styles.css.map
+# Don't exclude compiled CSS files for deployment
+# css/styles.css
+# css/styles.css.map
 
 # OS generated files
 ._*
@@ -51,5 +51,5 @@ ehthumbs.db
 *.sublime-project
 
 # Package files
-package-lock.json
+# package-lock.json - Include this file for deployment
 yarn.lock 
