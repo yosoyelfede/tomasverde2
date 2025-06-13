@@ -2,8 +2,11 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="description" content="Servicio de reciclaje y compostaje organico en Pichilemu. Transformamos residuos organicos en compost de calidad para un futuro mas sostenible.">
+  <meta name="theme-color" content="#2C5530">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <title>Tomas Verde - Reciclaje Organico en Pichilemu</title>
   
   <!-- Preload Font -->
@@ -95,6 +98,13 @@
       background-repeat: no-repeat;
     }
     
+          /* Fix for mobile background */
+      @media (max-width: 768px) {
+        #background-gif {
+          opacity: 1; /* Full opacity */
+        }
+      }
+    
     /* Capa de superposición con gradiente verde que se oscurece */
     .video-overlay {
       position: fixed;
@@ -126,6 +136,34 @@
         rgba(0, 20, 0, 0.55) 100%);
       z-index: -90;
       pointer-events: none;
+    }
+    
+    /* Same overlay for mobile as desktop */
+    @media (max-width: 768px) {
+      .video-overlay {
+        background: linear-gradient(to bottom, 
+          rgba(76, 175, 80, 0.05) 0%,
+          rgba(76, 175, 80, 0.07) 5%,
+          rgba(76, 175, 80, 0.09) 10%,
+          rgba(56, 142, 60, 0.12) 15%,
+          rgba(56, 142, 60, 0.15) 20%, 
+          rgba(56, 142, 60, 0.18) 25%,
+          rgba(56, 142, 60, 0.2) 30%,
+          rgba(46, 125, 50, 0.23) 35%,
+          rgba(46, 125, 50, 0.25) 40%,
+          rgba(46, 125, 50, 0.28) 45%,
+          rgba(27, 94, 32, 0.3) 50%, 
+          rgba(27, 94, 32, 0.33) 55%,
+          rgba(27, 94, 32, 0.35) 60%,
+          rgba(21, 56, 21, 0.38) 65%,
+          rgba(21, 56, 21, 0.4) 70%, 
+          rgba(21, 56, 21, 0.43) 75%,
+          rgba(21, 56, 21, 0.45) 80%,
+          rgba(0, 20, 0, 0.48) 85%,
+          rgba(0, 20, 0, 0.5) 90%,
+          rgba(0, 20, 0, 0.53) 95%,
+          rgba(0, 20, 0, 0.55) 100%);
+      }
     }
     
     /* Contenedor principal para el contenido que se desplaza */
@@ -408,6 +446,43 @@
       });
     });
   </script>
+
+  <!-- Style for arrows -->
+    <style>
+     /* Make arrows white */
+     img[src="img/arrow.svg"] {
+       filter: brightness(0) invert(1) drop-shadow(0 2px 3px rgba(255,255,255,0.3)) !important;
+     }
+     
+     /* Global styles for section titles to ensure consistency */
+     .section__title, .hero__title, h2.animate-on-scroll {
+       font-size: 4rem;
+       font-family: 'Playfair Display', serif;
+       font-weight: 700;
+       color: white;
+       text-shadow: 0 3px 15px rgba(0,0,0,0.5);
+       letter-spacing: 1px;
+       text-transform: uppercase;
+       margin-bottom: 3.5rem;
+       text-align: center;
+       position: relative;
+     }
+     
+
+     
+     /* Ensure consistent sizing on mobile */
+     @media (max-width: 768px) {
+       .section__title, .hero__title, h2.animate-on-scroll {
+         font-size: 4rem !important;
+       }
+     }
+     
+     @media (max-width: 576px) {
+       .section__title, .hero__title, h2.animate-on-scroll {
+         font-size: 4rem !important;
+       }
+     }
+  </style>
 </head>
 <body>
   <!-- Background elements -->
@@ -462,13 +537,54 @@
     }, 3000);
   </script>
 
+  <!-- Script to ensure the mobile menu works properly -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const navToggle = document.querySelector('.nav__toggle');
+      const navMenu = document.querySelector('.nav__menu');
+      
+      if (navToggle && navMenu) {
+        // Force initial state to be closed
+        navMenu.classList.remove('nav__menu--active');
+        
+        // Add direct click handler
+        navToggle.addEventListener('click', function() {
+          console.log('Toggle clicked');
+          this.classList.toggle('active');
+          navMenu.classList.toggle('nav__menu--active');
+          
+          // Log the current state
+          console.log('Menu active:', navMenu.classList.contains('nav__menu--active'));
+        });
+        
+        // Close menu when clicking on links
+        const navLinks = document.querySelectorAll('.nav__link');
+        navLinks.forEach(function(link) {
+          link.addEventListener('click', function() {
+            navToggle.classList.remove('active');
+            navMenu.classList.remove('nav__menu--active');
+          });
+        });
+      }
+    });
+  </script>
+
   <!-- Navigation - Con efecto glassmorphism -->
   <nav class="glass" style="position: fixed; top: 0; left: 0; width: 100%; background-color: rgba(44, 85, 48, 0.3); box-shadow: var(--glass-shadow); z-index: 1000; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); animation: fadeInDown 0.8s ease-out; padding: 0; height: 70px;">
+    
+    <style>
+      /* Adjust header height for mobile */
+             @media (max-width: 768px) {
+         nav.glass {
+           height: 100px !important; /* Increased height for even spacing around logo */
+         }
+       }
+    </style>
           <!-- Removed semicircle -->
           
           <div class="nav__container" style="margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; max-width: 1200px;">
-      <a href="#inicio" class="nav__logo" style="display: flex; align-items: center; text-decoration: none; margin-top: 10px; position: relative; z-index: 1001;">
-        <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; position: relative; border: 4px solid white;">
+      <a href="#inicio" class="nav__logo" style="display: flex; align-items: center; text-decoration: none; margin-top: 0; position: relative; z-index: 1001; padding: 10px;">
+        <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; position: relative; border: 4px solid white; margin: 10px;">
           <img src="img/logo.png" alt="Tomás Verde Logo" style="width: 100%; height: 100%; object-fit: cover; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));">
         </div>
       </a>
@@ -484,12 +600,40 @@
             transform: translateY(0);
           }
         }
+        
+        /* Mobile styles for logo */
+        @media (max-width: 768px) {
+          .nav__logo div {
+            width: 80px !important;
+            height: 80px !important;
+            margin-top: 0 !important;
+          }
+          
+          .nav__container {
+            padding: 0 1rem !important;
+            height: 100px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+          }
+          
+          .nav__logo {
+            margin-top: 0 !important;
+          }
+        }
+        
+        @media (max-width: 576px) {
+          .nav__logo div {
+            width: 70px !important;
+            height: 70px !important;
+          }
+        }
       </style>
       
-      <button class="nav__toggle glass" aria-label="Menú" style="display: none; background: transparent; border: none; cursor: pointer; padding: 0.8rem; border-radius: 0;">
-        <span style="display: block; width: 25px; height: 2px; background: white; margin: 5px 0; border-radius: 3px;"></span>
-        <span style="display: block; width: 25px; height: 2px; background: white; margin: 5px 0; border-radius: 3px;"></span>
-        <span style="display: block; width: 25px; height: 2px; background: white; margin: 5px 0; border-radius: 3px;"></span>
+      <button class="nav__toggle glass" aria-label="Menú" style="display: none; background: transparent; border: none; cursor: pointer; padding: 0.8rem; z-index: 1500; width: 50px; height: 50px;">
+        <span style="display: block; width: 25px; height: 3px; background: white; margin: 5px auto; border-radius: 3px; transition: transform 0.3s ease, opacity 0.3s ease;"></span>
+        <span style="display: block; width: 25px; height: 3px; background: white; margin: 5px auto; border-radius: 3px; transition: transform 0.3s ease, opacity 0.3s ease;"></span>
+        <span style="display: block; width: 25px; height: 3px; background: white; margin: 5px auto; border-radius: 3px; transition: transform 0.3s ease, opacity 0.3s ease;"></span>
       </button>
       
       <ul class="nav__menu" style="display: flex; list-style: none; margin: 0; padding: 0; gap: 2rem; align-items: flex-start; transform: translateY(-30px);">
@@ -523,6 +667,46 @@
           display: inline !important;
           padding: 0.5rem 1rem !important;
         }
+        
+        /* Mobile menu button display */
+        @media (max-width: 768px) {
+          .nav__toggle {
+            display: block !important;
+            margin-top: 0 !important;
+            position: relative !important;
+            top: 0 !important;
+            align-self: center !important;
+          }
+          
+          .nav__menu {
+            display: none !important;
+            transform: translateY(0) !important;
+            background: rgba(44, 85, 48, 0.95) !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            width: 100% !important;
+            height: 100vh !important;
+            z-index: 1000 !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+          }
+          
+          .nav__menu--active {
+            display: flex !important;
+          }
+          
+          .nav__link {
+            font-size: 1.2rem !important;
+            padding: 1rem 2rem !important;
+            margin: 0.3rem 0 !important;
+            color: white !important;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5) !important;
+          }
+        }
       </style>
     </div>
   </nav>
@@ -537,10 +721,46 @@
     <div style="position: absolute; bottom: 15%; right: 5%; width: 250px; height: 250px; background: radial-gradient(circle, var(--color-medium-earth), transparent 70%); border-radius: 50%; opacity: 0.3; filter: blur(50px); animation: float 18s infinite alternate-reverse ease-in-out;"></div>
     
     <div class="hero__content" style="background: transparent; border-radius: 30px; padding: 3.5rem; max-width: 800px; text-align: center; position: relative; z-index: 2; animation: fadeInUp 1s ease-out; border: none; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none;">
-      <h1 class="hero__title" style="font-size: 5rem; font-family: 'Playfair Display', serif; font-weight: 700; color: white; margin-bottom: 1rem; text-shadow: 0 3px 15px rgba(0, 0, 0, 0.5); letter-spacing: 1px; text-transform: uppercase;">Transformando residuos en vida</h1>
+      <h1 class="hero__title" style="font-size: 4rem; font-family: 'Playfair Display', serif; font-weight: 700; color: white; margin-bottom: 1rem; text-shadow: 0 3px 15px rgba(0, 0, 0, 0.5); letter-spacing: 1px; text-transform: uppercase;">
+        Transformando residuos en vida
+      </h1>
       <p class="hero__subtitle" style="font-size: 1.8rem; font-family: 'Playfair Display', serif; font-weight: 300; font-style: italic; color: white; margin-bottom: 2rem; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);">Servicio de reciclaje organico y compostaje en Pichilemu</p>
       <a href="#contacto" class="btn" style="background: transparent; color: white; border: 3px solid white; padding: 2rem 4rem; border-radius: 50px; font-family: 'Playfair Display', serif; font-weight: 600; font-size: 2rem; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; display: inline-block; transition: all 0.5s ease; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);">Unete al cambio</a>
     </div>
+    
+    <style>
+      /* Mobile styles for hero section */
+      @media (max-width: 768px) {
+        .hero__content {
+          padding: 2rem 1.5rem !important;
+        }
+        
+        .hero__subtitle {
+          font-size: 1.4rem !important;
+        }
+        
+        .btn {
+          padding: 1.5rem 3rem !important;
+          font-size: 1.6rem !important;
+        }
+      }
+      
+      @media (max-width: 576px) {
+        .hero__content {
+          padding: 1.5rem 1rem !important;
+        }
+        
+        .hero__subtitle {
+          font-size: 1.2rem !important;
+        }
+        
+        .btn {
+          padding: 1.2rem 2.5rem !important;
+          font-size: 1.4rem !important;
+          width: 80% !important;
+        }
+      }
+    </style>
     
     <style>
       .btn:hover {
@@ -568,10 +788,77 @@
     <div style="position: absolute; top: 10%; right: 5%; width: 150px; height: 150px; background: radial-gradient(circle at 30% 30%, var(--color-light-green), transparent); border-radius: 50%; opacity: 0.15; filter: blur(30px);"></div>
     <div style="position: absolute; bottom: 15%; left: 8%; width: 180px; height: 180px; background: radial-gradient(circle at 70% 70%, var(--color-light-earth), transparent); border-radius: 50%; opacity: 0.1; filter: blur(40px);"></div>
     <div class="container">
-      <h2 class="section__title" style="font-size: 4rem; margin-bottom: 3rem; text-align: center; color: #fff; position: relative; font-family: 'Playfair Display', serif; font-weight: 700; text-shadow: 0 3px 10px rgba(0,0,0,0.4); letter-spacing: 1px; text-transform: uppercase;">
+      <h2 class="section__title animate-on-scroll" style="font-size: 4rem; margin-bottom: 3.5rem; text-align: center; color: white; position: relative; font-family: 'Playfair Display', serif; font-weight: 700; text-shadow: 0 3px 15px rgba(0,0,0,0.5); letter-spacing: 1px; text-transform: uppercase; animation-delay: 0.1s;">
         Nuestros Servicios
       </h2>
+      
+      <style>
+                   /* Mobile styles for section titles */
+           @media (max-width: 768px) {
+             .section__title {
+               color: white !important;
+               text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4) !important;
+               background: transparent;
+               padding: 0 !important;
+               margin-bottom: 2rem !important;
+             }
+           }
+      </style>
       <div class="card-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; margin: 0 auto; max-width: 1200px; padding: 0 2rem; opacity: 1; transform: none;">
+        
+        <style>
+          /* Mobile optimizations for card grid */
+          @media (max-width: 768px) {
+            .card-grid {
+              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+              gap: 2rem !important;
+              padding: 0 1.5rem !important;
+            }
+            
+                         .service-card {
+              padding: 2rem !important;
+              height: auto !important;
+              min-height: 450px !important;
+              background: rgba(0, 0, 0, 0.2) !important;
+              backdrop-filter: blur(5px) !important;
+              -webkit-backdrop-filter: blur(5px) !important;
+              border-radius: 15px !important;
+            }
+            
+            .service-card h3 {
+              font-size: 2rem !important;
+              color: white !important;
+              text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+            }
+            
+            .service-card p {
+              font-size: 1rem !important;
+              color: white !important;
+              text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+            }
+            
+                         .service-card a {
+               background: transparent !important;
+               color: white !important;
+               font-weight: bold !important;
+               padding: 10px 20px !important;
+               border: 1px solid white !important;
+             }
+          }
+          
+          @media (max-width: 576px) {
+            .card-grid {
+              grid-template-columns: 1fr !important;
+              gap: 1.5rem !important;
+              padding: 0 1rem !important;
+            }
+            
+            .service-card {
+              padding: 1.5rem !important;
+              min-height: 400px !important;
+            }
+          }
+        </style>
                   <!-- Servicio 1: Recolección -->
           <div class="card service-card glass animate-on-scroll" style="opacity: 1; transform: none; background: transparent; border-radius: 0; box-shadow: none; padding: 2.5rem; text-align: center; transition: all 0.5s ease; backdrop-filter: none; -webkit-backdrop-filter: none; border: none; overflow: hidden; position: relative; animation-delay: 0.1s; display: flex; flex-direction: column; justify-content: space-between; height: 500px;">
           
@@ -685,7 +972,6 @@
     <div class="container" style="position: relative; z-index: 3;">
       <h2 class="animate-on-scroll" style="font-size: 4rem; margin-bottom: 3.5rem; text-align: center; color: white; position: relative; font-family: 'Playfair Display', serif; font-weight: 700; text-shadow: 0 3px 15px rgba(0,0,0,0.5); letter-spacing: 1px; text-transform: uppercase; animation-delay: 0.1s;">
         Nuestro Proceso
-        <span style="display: block; width: 120px; height: 3px; background: #fff; margin: 1rem auto; box-shadow: 0 3px 8px rgba(0,0,0,0.3);"></span>
       </h2>
       
       <div class="process-steps" style="position: relative; max-width: 1000px; margin: 0 auto; padding: 0;">
@@ -698,7 +984,7 @@
             <img src="img/camion.webp" alt="Recoleccion de residuos" style="width: 100%; height: 200px; object-fit: cover; border-radius: 20px; margin-top: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
             
             <!-- Hand-drawn arrow pointing to step 2 -->
-          <img src="img/arrow.svg" alt="Arrow" style="position: absolute; bottom: -100px; right: -180px; width: 360px; height: 200px; z-index: 2; transform: rotate(-75deg); filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));" />
+          <img src="img/arrow.svg" alt="Arrow" style="position: absolute; bottom: -100px; right: -180px; width: 360px; height: 200px; z-index: 2; transform: rotate(-75deg); filter: brightness(0) invert(1) drop-shadow(0 2px 3px rgba(255,255,255,0.3));" />
           </div>
         </div>
         
@@ -710,7 +996,7 @@
             <img src="img/clasificacion.jpg" alt="Clasificacion de residuos" style="width: 100%; height: 200px; object-fit: cover; border-radius: 20px; margin-top: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
             
             <!-- Hand-drawn arrow pointing to step 3 -->
-          <img src="img/arrow.svg" alt="Arrow" style="position: absolute; bottom: -100px; left: -180px; width: 360px; height: 200px; z-index: 2; transform: scaleX(-1) rotate(-75deg); filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));" />
+          <img src="img/arrow.svg" alt="Arrow" style="position: absolute; bottom: -100px; left: -180px; width: 360px; height: 200px; z-index: 2; transform: scaleX(-1) rotate(-75deg); filter: brightness(0) invert(1) drop-shadow(0 2px 3px rgba(255,255,255,0.3));" />
           </div>
         </div>
         
@@ -722,7 +1008,7 @@
             <img src="img/compostaje.png" alt="Proceso de compostaje" style="width: 100%; height: 200px; object-fit: cover; border-radius: 20px; margin-top: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
             
             <!-- Hand-drawn arrow pointing to step 4 -->
-          <img src="img/arrow.svg" alt="Arrow" style="position: absolute; bottom: -100px; right: -180px; width: 360px; height: 200px; z-index: 2; transform: rotate(-75deg); filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));" />
+          <img src="img/arrow.svg" alt="Arrow" style="position: absolute; bottom: -100px; right: -180px; width: 360px; height: 200px; z-index: 2; transform: rotate(-75deg); filter: brightness(0) invert(1) drop-shadow(0 2px 3px rgba(255,255,255,0.3));" />
           </div>
         </div>
         
@@ -783,6 +1069,16 @@
   <!-- Impact Section -->
   <section id="impacto" class="section" style="position: relative; padding: 8rem 0; background: transparent; overflow: hidden; margin-top: 0; border-top: none;">
     
+    <!-- Style for arrows -->
+    <style>
+      /* Make arrows white on mobile */
+      @media (max-width: 768px) {
+        img[src="img/arrow.svg"] {
+          filter: brightness(0) invert(1) drop-shadow(0 2px 3px rgba(255,255,255,0.3)) !important;
+        }
+      }
+    </style>
+    
     <!-- Elementos decorativos con efecto glassmorphism -->
     <div style="position: absolute; top: 10%; right: 5%; width: 300px; height: 300px; background: radial-gradient(circle, var(--color-light-green), transparent 70%); opacity: 0.4; filter: blur(60px); border-radius: 50%; animation: float 15s infinite alternate ease-in-out;"></div>
     <div style="position: absolute; bottom: 15%; left: 8%; width: 250px; height: 250px; background: radial-gradient(circle, var(--color-medium-earth), transparent 70%); opacity: 0.3; filter: blur(50px); border-radius: 50%; animation: float 18s infinite alternate-reverse ease-in-out;"></div>
@@ -790,7 +1086,6 @@
     <div class="container" style="position: relative; z-index: 3;">
       <h2 class="animate-on-scroll" style="font-size: 4rem; margin-bottom: 3.5rem; text-align: center; color: white; position: relative; font-family: 'Playfair Display', serif; font-weight: 700; text-shadow: 0 3px 15px rgba(0,0,0,0.5); letter-spacing: 1px; text-transform: uppercase; animation-delay: 0.1s;">
         Nuestro Impacto
-        <span style="display: block; width: 120px; height: 3px; background: #fff; margin: 1rem auto; box-shadow: 0 3px 8px rgba(0,0,0,0.3);"></span>
       </h2>
       
       <!-- Stats with glassmorphism -->
@@ -936,7 +1231,6 @@
     <div class="container" style="position: relative; z-index: 3;">
       <h2 class="animate-on-scroll" style="font-size: 4rem; margin-bottom: 3.5rem; text-align: center; color: white; position: relative; font-family: 'Playfair Display', serif; font-weight: 700; text-shadow: 0 3px 15px rgba(0,0,0,0.5); letter-spacing: 1px; text-transform: uppercase; animation-delay: 0.1s;">
         Unete al Cambio
-        <span style="display: block; width: 120px; height: 3px; background: #fff; margin: 1rem auto; box-shadow: 0 3px 8px rgba(0,0,0,0.3);"></span>
       </h2>
       
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; margin: 0 auto; max-width: 1200px; padding: 0 2rem;">
@@ -1042,7 +1336,7 @@
         <!-- Brand -->
         <div class="animate-on-scroll" style="animation-delay: 0.2s;">
           <div style="width: 120px; height: 120px; margin-bottom: 1.5rem; background: transparent; display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; border: 4px solid white; border-radius: 50%;">
-            <img src="img/logo.png" alt="Tomas Verde Logo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+            <img src="img/logo.png" alt="Tomas Verde Logo" style="width: 100%; height: 100%; object-fit: cover; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));">
           </div>
           
           <p style="font-family: 'Quicksand', sans-serif; margin-bottom: 1.5rem; line-height: 1.6; color: rgba(255,255,255,0.9); max-width: 300px; text-shadow: 0 1px 3px rgba(0,0,0,0.1);">Transformando residuos organicos en vida nueva para nuestros suelos, un paso a la vez hacia un futuro mas sostenible.</p>
