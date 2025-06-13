@@ -1,0 +1,21 @@
+// Colors
+$primary-color: #2C5530;    // Verde musgo profundo
+$secondary-color: #8B4513;  // Marrón tierra
+$accent-color: #D4A017;     // Amarillo cálido
+$text-color: #2A2A2A;       // Casi negro para texto
+$light-bg: #F5F2EB;        // Beige claro para fondos
+$dark-bg: #1E1E1E;         // Negro suave para footer
+
+// Typography
+$font-primary: 'Caveat', cursive;
+$font-secondary: 'Quicksand', sans-serif;
+$font-titles: 'Amatic SC', cursive;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// Transitions
+$transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 

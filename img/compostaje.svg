@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Compost bin -->
+  <rect x="20" y="20" width="40" height="50" 
+        fill="none" 
+        stroke="#2C5530" 
+        stroke-width="3"
+        rx="5"/>
+  
+  <!-- Soil layers -->
+  <path d="M25,40 L55,40" 
+        stroke="#8B4513" 
+        stroke-width="3"
+        stroke-linecap="round"/>
+  
+  <path d="M25,50 L55,50" 
+        stroke="#8B4513" 
+        stroke-width="3"
+        stroke-linecap="round"/>
+  
+  <path d="M25,60 L55,60" 
+        stroke="#8B4513" 
+        stroke-width="3"
+        stroke-linecap="round"/>
+  
+  <!-- Growing plant -->
+  <path d="M40,20 C40,20 35,15 40,10 C45,15 40,20 40,20" 
+        fill="#2C5530"/>
+  
+  <path d="M40,10 L40,20" 
+        stroke="#2C5530" 
+        stroke-width="2"
+        stroke-linecap="round"/>
+  
+  <!-- Air holes -->
+  <circle cx="25" cy="30" r="2" fill="#2C5530"/>
+  <circle cx="35" cy="30" r="2" fill="#2C5530"/>
+  <circle cx="45" cy="30" r="2" fill="#2C5530"/>
+  <circle cx="55" cy="30" r="2" fill="#2C5530"/>
+</svg> 

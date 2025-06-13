@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <!-- Fondo del logo (opcional, transparente) -->
+  <rect width="200" height="60" fill="none"/>
+  
+  <!-- Círculo verde que representa la tierra/compost (ahora en blanco) -->
+  <circle cx="30" cy="30" r="25" fill="#FFFFFF"/>
+  
+  <!-- Planta/brote emergiendo del compost (ahora en blanco) -->
+  <path d="M30,5 C20,15 15,25 30,30 C45,25 40,15 30,5" fill="#FFFFFF"/>
+  <path d="M30,30 L30,55" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Texto "Tomás Verde" (ahora en blanco) -->
+  <text x="65" y="25" font-family="'Caveat', cursive" font-size="24" font-weight="bold" fill="#FFFFFF">Tomás Verde</text>
+  
+  <!-- Subtexto "Reciclaje Orgánico" (ahora en blanco) -->
+  <text x="65" y="45" font-family="'Quicksand', sans-serif" font-size="12" fill="#FFFFFF">Reciclaje Orgánico</text>
+  
+  <!-- Elemento circular que representa el ciclo de reciclaje (ahora en blanco) -->
+  <path d="M175,30 A15,15 0 1 1 174.9,29.9" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="1,3"/>
+  
+  <!-- Hoja decorativa (ahora en blanco) -->
+  <path d="M175,15 C170,20 180,25 175,20" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg> 

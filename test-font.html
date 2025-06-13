@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Font Test</title>
+  <style>
+    @font-face {
+      font-family: 'Beachday';
+      src: url('fonts/beachday.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    h1, h2 {
+      font-family: 'Beachday', cursive;
+    }
+    
+    .test-text {
+      margin: 40px 0;
+      font-size: 24px;
+    }
+    
+    .beachday {
+      font-family: 'Beachday', cursive;
+    }
+    
+    .normal {
+      font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <h1>Beachday Font Test</h1>
+  
+  <div class="test-text">
+    <p class="beachday">This text should be in Beachday font</p>
+    <p class="normal">This text should be in normal font</p>
+  </div>
+  
+  <h2>Another Beachday Heading</h2>
+  
+  <div class="test-text">
+    <p class="beachday">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
+    <p class="beachday">abcdefghijklmnopqrstuvwxyz</p>
+    <p class="beachday">0123456789</p>
+  </div>
+</body>
+</html> 

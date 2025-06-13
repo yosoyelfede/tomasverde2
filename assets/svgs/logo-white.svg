@@ -1,0 +1,12 @@
+<svg width="150" height="50" viewBox="0 0 150 50" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .text { font-family: 'Libre Baskerville', serif; font-weight: bold; }
+    .leaf { fill: #f2e8d5; }
+    .accent { fill: #c78f4b; }
+  </style>
+  <path class="leaf" d="M30 10c-5.5 0-10 4.5-10 10 0 5.5 4.5 10 10 10 5.5 0 10-4.5 10-10 0-5.5-4.5-10-10-10zm0 18c-4.4 0-8-3.6-8-8 0-4.4 3.6-8 8-8 4.4 0 8 3.6 8 8 0 4.4-3.6 8-8 8z"/>
+  <path class="leaf" d="M30 5c-8.3 0-15 6.7-15 15 0 8.3 6.7 15 15 15 8.3 0 15-6.7 15-15 0-8.3-6.7-15-15-15zm0 28c-7.2 0-13-5.8-13-13s5.8-13 13-13 13 5.8 13 13-5.8 13-13 13z"/>
+  <path class="accent" d="M30 15v10M25 20h10"/>
+  <text class="text" x="55" y="23" font-size="16" fill="#f2e8d5">Tomás</text>
+  <text class="text" x="55" y="38" font-size="16" fill="#f2e8d5">Verde</text>
+</svg> 

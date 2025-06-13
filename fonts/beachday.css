@@ -1,0 +1,16 @@
+@font-face {
+  font-family: "Beachday";
+  src: url("beachday.ttf") format("truetype"),
+       url("beachday.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-beachday {
+  font-family: "Beachday", cursive !important;
+}
+
+h1, h2, h3, .section__title, .hero__title {
+  font-family: "Beachday", cursive !important;
+}
