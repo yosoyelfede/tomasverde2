@@ -1,0 +1,26 @@
+/* Consolidated font declarations */
+
+/* Bread Forest Font */
+@font-face {
+  font-family: "Bread Forest";
+  src: url("./bread-forest.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Font Classes */
+.font-bread-forest {
+  font-family: "Bread Forest", cursive !important;
+}
+
+/* Apply Bread Forest font to ALL text elements */
+body, p, h1, h2, h3, h4, h5, h6, div, span, a, button, input, textarea, select, li, td, th, 
+.section__title, .hero__title, .btn, .nav__link, .footer__tagline {
+  font-family: 'Bread Forest', cursive !important;
+}
+
+/* Special treatment for inputs and buttons */
+.nav__link, button, input, textarea, select {
+  font-family: 'Bread Forest', cursive !important;
+} 

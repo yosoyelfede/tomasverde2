@@ -1,58 +1,31 @@
-document.addEventListener("DOMContentLoaded", function() {
-  console.log("Cache busting script loaded");
-  
-  // Force browser to reload cached resources
-  const version = 'v=5';
-  const links = document.querySelectorAll('link[rel="stylesheet"]');
-  const scripts = document.querySelectorAll('script[src]');
-  const images = document.querySelectorAll('img[src]');
-  
-  // Update stylesheet links
-  links.forEach(link => {
-    if (link.href && !link.href.includes('googleapis') && !link.href.includes('unpkg.com') && !link.href.includes('cdn')) {
-      link.href = updateQueryParam(link.href, version);
-    }
-  });
-  
-  // Update script sources
-  scripts.forEach(script => {
-    if (script.src && !script.src.includes('googleapis') && !script.src.includes('unpkg.com') && !script.src.includes('cdn')) {
-      script.src = updateQueryParam(script.src, version);
-    }
-  });
-  
-  // Update image sources
-  images.forEach(img => {
-    if (img.src) {
-      img.src = updateQueryParam(img.src, version);
-    }
-  });
-  
-  // Font loading detection
-  const fontLoader = new FontFace('Bread Forest', 'url(fonts/bread-forest.otf?v=5)');
-  
-  fontLoader.load().then(function(loadedFace) {
-    document.fonts.add(loadedFace);
-    document.documentElement.classList.add('font-loaded');
-    console.log('Bread Forest font loaded successfully');
-  }).catch(function(error) {
-    console.error('Font loading failed:', error);
-  });
-  
-  // Helper function to update query parameters
-  function updateQueryParam(url, param) {
-    // If URL already has query parameters
-    if (url.includes('?')) {
-      // If URL already has v= parameter, replace it
-      if (url.includes('v=')) {
-        return url.replace(/v=\d+/, param);
-      } else {
-        // Otherwise add the v= parameter
-        return url + '&' + param;
-      }
-    } else {
-      // If URL has no query parameters, add v= parameter
-      return url + '?' + param;
-    }
-  }
-});
+/**
+ * Cache busting script for TomasVerde website
+ * 
+ * This script generates a new timestamp to append to resource URLs
+ * forcing browsers to download fresh copies of modified resources
+ */
+
+const fs = require('fs');
+const path = require('path');
+
+// Get current timestamp to use as version
+const timestamp = Math.floor(Date.now() / 1000);
+const versionString = `v=${timestamp}`;
+
+// File paths to update
+const htmlFile = path.join(__dirname, 'index.html');
+
+// Read the HTML file
+let htmlContent = fs.readFileSync(htmlFile, 'utf8');
+
+// Create a single regex to match all version patterns
+const versionRegex = /(\w+\.[a-z]{2,4})\?v=\d+/g;
+
+// Replace all version strings
+htmlContent = htmlContent.replace(versionRegex, (match, p1) => `${p1}?${versionString}`);
+
+// Write the updated HTML file
+fs.writeFileSync(htmlFile, htmlContent);
+
+console.log(`Cache busting completed! New version: ${versionString}`);
+console.log(`Updated resources in ${htmlFile}`);

@@ -1,6 +1,51 @@
-# Tomás Verde - Reciclaje Orgánico en Pichilemu
+# Tomás Verde Website
 
-Sitio web para Tomás Verde, un servicio de recolección y compostaje de residuos orgánicos en Pichilemu, Chile. El sitio está diseñado con un enfoque en la estética artesanal y ecológica, utilizando elementos orgánicos y naturales en su diseño.
+Website for Tomás Verde - Organic recycling service in Pichilemu.
+
+## Project Structure
+
+- `/css` - Contains stylesheets (SCSS and compiled CSS)
+- `/fonts` - Contains custom fonts
+- `/img` - Contains images and SVGs
+- `/js` - Contains JavaScript files
+
+## Recent Optimizations
+
+- Consolidated font loading into a single file
+- Simplified preloader implementation
+- Optimized JavaScript files by removing redundant code
+- Improved performance monitoring
+- Streamlined cache busting for better performance
+- Removed unused dependencies
+
+## Development
+
+To run the development server:
+
+```bash
+npm install
+npm run dev
+```
+
+This will start a local server and watch for SCSS changes.
+
+## Building
+
+To build for production:
+
+```bash
+npm run build
+```
+
+This will compile SCSS to CSS and update cache busting version numbers.
+
+## Starting the server
+
+```bash
+npm start
+```
+
+This will start a local server on port 8000.
 
 ## Características
 

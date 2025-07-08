@@ -2,17 +2,17 @@
   "name": "tomas-verde",
   "version": "1.0.0",
   "description": "Sitio web de Tomás Verde - Reciclaje orgánico en Pichilemu",
-  "main": "index.js",
   "scripts": {
     "sass": "sass css/styles.scss:css/styles.css --style=compressed --no-source-map",
-    "watch": "sass --watch css:css"
+    "watch": "sass --watch css:css",
+    "build": "npm run sass && node clear-cache.js",
+    "start": "python3 -m http.server 8000",
+    "dev": "concurrently \"npm run watch\" \"npm run start\""
   },
   "author": "Tomás Verde",
   "license": "ISC",
-  "dependencies": {
-    "gsap": "^3.12.2"
-  },
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "sass": "^1.89.2"
   }
 }

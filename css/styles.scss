@@ -2,37 +2,47 @@
 @import 'mixins';
 @import 'icons';
 
-// Font Face Declaration for Beachday
+// Font Face Declaration for Bread Forest
 @font-face {
-  font-family: 'Beachday';
-  src: url('../fonts/beachday.ttf') format('truetype');
+  font-family: 'Bread Forest';
+  src: url('../fonts/bread-forest.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
+
+// Import Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Caveat:wght@400;500;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap');
 
 // Variables
 $primary-color: #2C5530;    // Verde musgo profundo
 $secondary-color: #8B4513;  // Marrón tierra
 $accent-color: #D4A017;     // Amarillo cálido
 $text-color: #2A2A2A;       // Casi negro para texto
-$light-bg: #F5F2EB;        // Beige claro para fondos
-$dark-bg: #1E1E1E;         // Negro suave para footer
+$light-bg: #F5F2EB;         // Beige claro para fondos
+$dark-bg: #1E1E1E;          // Negro suave para footer
+$cta-color: #7EA745;        // Color para botones CTA
 $transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
 // Typography
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Caveat:wght@400;500;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap');
-
 $font-primary: 'Caveat', cursive;
 $font-secondary: 'Quicksand', sans-serif;
 $font-titles: 'Amatic SC', cursive;
-$font-beachday: 'Beachday', cursive;
+$font-bread-forest: 'Bread Forest', cursive;
 
 // Breakpoints
 $breakpoint-sm: 576px;
 $breakpoint-md: 768px;
 $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;
+
+// Z-Index Hierarchy (organized)
+$z-background: -100;
+$z-background-overlay: -90;
+$z-content: 1;
+$z-header: 1000;
+$z-mobile-menu-toggle: 1001;
+$z-mobile-menu: 1002;
 
 // Global resets
 *,
@@ -81,36 +91,161 @@ $breakpoint-xl: 1200px;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23${darkGreen.substring(1)}' fill-opacity='#{$opacity}' fill-rule='evenodd'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%232C5530' fill-opacity='#{$opacity}' fill-rule='evenodd'/%3E%3C/svg%3E");
     opacity: $opacity;
     pointer-events: none;
     z-index: 1;
   }
 }
 
+// Paper texture mixin
+@mixin paper-texture {
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+// Background video styles
+.background-container {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: 100%;
+  height: 100%;
+  z-index: -100;
+}
+
+// Static background fallback
+.background-static {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url('../img/hero.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -101;
+}
+
+// Video background
+#background-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: 100%;
+  height: 100%;
+  z-index: -100;
+  object-fit: cover;
+  will-change: transform; /* Optimize for GPU acceleration */
+  transform: translateZ(0); /* Force GPU acceleration */
+}
+
+// Mobile background fix
+@media (max-width: 768px) {
+  #background-video {
+    display: block; /* Show video on mobile */
+    z-index: -100;
+    position: fixed;
+    object-fit: cover;
+  }
+  
+  .background-static {
+    z-index: -101 !important; /* Keep static background as fallback */
+    opacity: 0.6;
+  }
+}
+
+// Video overlay with gradient
+.video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, 
+    rgba(76, 175, 80, 0.05) 0%,
+    rgba(76, 175, 80, 0.07) 5%,
+    rgba(76, 175, 80, 0.09) 10%,
+    rgba(56, 142, 60, 0.12) 15%,
+    rgba(56, 142, 60, 0.15) 20%, 
+    rgba(56, 142, 60, 0.18) 25%,
+    rgba(56, 142, 60, 0.2) 30%,
+    rgba(46, 125, 50, 0.23) 35%,
+    rgba(46, 125, 50, 0.25) 40%,
+    rgba(46, 125, 50, 0.28) 45%,
+    rgba(27, 94, 32, 0.3) 50%, 
+    rgba(27, 94, 32, 0.33) 55%,
+    rgba(27, 94, 32, 0.35) 60%,
+    rgba(21, 56, 21, 0.38) 65%,
+    rgba(21, 56, 21, 0.4) 70%, 
+    rgba(21, 56, 21, 0.43) 75%,
+    rgba(21, 56, 21, 0.45) 80%,
+    rgba(0, 20, 0, 0.48) 85%,
+    rgba(0, 20, 0, 0.5) 90%,
+    rgba(0, 20, 0, 0.53) 95%,
+    rgba(0, 20, 0, 0.55) 100%);
+  z-index: -90;
+  pointer-events: none;
+}
+
+// Ensure text is visible against the background
+h1, h2, h3, h4, h5, h6, p, span, a, button, li {
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+// Content wrapper
+.content-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  background: transparent;
+}
+
 // Base styles
 html {
   font-size: 62.5%; // 1rem = 10px
   scroll-behavior: smooth;
+  
+  // Scale up font size on larger screens
+  @media (min-width: $breakpoint-lg) {
+    font-size: 70%; // Increase to 7px base
+  }
+  
+  // Scale up even more for very large screens
+  @media (min-width: 1600px) {
+    font-size: 80%; // Increase to 8px base
+  }
+  
+  // Extra large screens
+  @media (min-width: 1920px) {
+    font-size: 90%; // Increase to 9px base
+  }
 }
 
 body {
   font-family: $font-secondary;
   font-size: 1.6rem;
   line-height: 1.6;
-  color: $text-color;
-  background-color: $light-bg;
-  @include paper-texture;
+  color: #fff;
+  background-color: transparent;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  @include texture;
+  transition: background-color 1s ease;
 }
 
 img {
   max-width: 100%;
   height: auto;
   display: block;
+  
+  @media (min-width: 1600px) {
+    max-width: 120%;
+    margin: 0 auto;
+  }
 }
 
 a {
@@ -128,7 +263,7 @@ ul {
 }
 
 h1, h2, h3 {
-  font-family: $font-beachday;
+  font-family: $font-bread-forest;
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 2rem;
@@ -147,11 +282,26 @@ p {
   margin-bottom: 1.6rem;
 }
 
+// Container with responsive max-width
 .container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
+  
+  // Larger max-width for bigger screens
+  @media (min-width: 1400px) {
+    max-width: 1400px;
+  }
+  
+  @media (min-width: 1600px) {
+    max-width: 1800px;
+  }
+  
+  // Even larger for very big screens
+  @media (min-width: 1920px) {
+    max-width: 2000px;
+  }
 }
 
 // Section styles
@@ -159,6 +309,22 @@ p {
   padding: 5rem 0;
   position: relative;
   overflow: hidden;
+  width: 100vw;
+  max-width: 100%;
+  overflow-x: hidden;
+  
+  // Increase padding on larger screens
+  @media (min-width: $breakpoint-lg) {
+    padding: 7rem 0;
+  }
+  
+  @media (min-width: 1600px) {
+    padding: 8rem 0;
+  }
+  
+  @media (min-width: 1920px) {
+    padding: 10rem 0;
+  }
   
   &:nth-child(even) {
     background-color: rgba($text-color, 0.03);
@@ -166,12 +332,28 @@ p {
 }
 
 .section__title {
-  font-family: $font-beachday;
+  font-family: $font-bread-forest;
   font-size: 4.5rem;
   text-align: center;
   margin-bottom: 4rem;
   color: $primary-color;
   position: relative;
+  
+  // Scale up title size on larger screens
+  @media (min-width: $breakpoint-lg) {
+    font-size: 5rem;
+    margin-bottom: 5rem;
+  }
+  
+  @media (min-width: 1600px) {
+    font-size: 5.5rem;
+    margin-bottom: 6rem;
+  }
+  
+  @media (min-width: 1920px) {
+    font-size: 6rem;
+    margin-bottom: 7rem;
+  }
   
   &::after {
     content: '';
@@ -182,6 +364,17 @@ p {
     width: 8rem;
     height: 3px;
     background: url("data:image/svg+xml,%3Csvg width='100' height='10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,5 C25,0 75,10 100,5' stroke='%232C5530' fill='none' stroke-width='2'/%3E%3C/svg%3E") repeat-x;
+    
+    // Scale the decorative element
+    @media (min-width: $breakpoint-lg) {
+      width: 10rem;
+      bottom: -1.5rem;
+    }
+    
+    @media (min-width: 1600px) {
+      width: 12rem;
+      bottom: -2rem;
+    }
   }
 }
 
@@ -251,6 +444,20 @@ p {
   &--full {
     width: 100%;
   }
+  
+  &--cta {
+    background-color: $cta-color;
+    color: #fff;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(126, 167, 69, 0.3);
+    transition: all 0.3s ease;
+    
+    &:hover, &:focus {
+      background-color: darken($cta-color, 8%);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(126, 167, 69, 0.4);
+    }
+  }
 }
 
 // Preloader
@@ -285,84 +492,158 @@ p {
   left: 0;
   width: 100%;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  transition: transform 0.3s ease;
+  background: transparent;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  transition: height 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              backdrop-filter 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   
-  &--hidden {
-    transform: translateY(-100%);
+  &--scrolled {
+    height: 86px;
+    background: rgba($primary-color, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    
+    .nav__container {
+      height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .nav__logo-image {
+      transform: scale(0.5);
+      transform-origin: top left; // Scale from top-left to maintain distance from screen edges
+      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    .nav__logo {
+      padding-top: 8px; // Maintain exact 8px distance from screen top
+      padding-left: 8px; // Same as mobile - consistent left padding
+      margin-left: 0;
+      display: flex;
+      align-items: flex-start; // Don't center vertically - use fixed top position
+      height: 100%;
+    }
   }
   
-  .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-  }
-  
-  &__logo {
-    img {
-      height: 40px;
-      width: auto;
+  @media (max-width: $breakpoint-md) {
+    height: 156px; // Match desktop for full logo
+    padding: 0.5rem 0;
+    
+    &--scrolled {
+      height: 70px;
+      
+      .nav__container {
+        height: 70px;
+        min-height: 70px;
+        padding: 0 1rem; // Remove vertical padding for vertical centering
+      }
+      
+      .nav__logo-image {
+        transform: scale(0.5); // Same as web - half size
+        transform-origin: top left; // Same as desktop - maintain distance from edges
+      }
+      
+      .nav__logo {
+        padding-top: 0; // Remove top padding for vertical centering
+        padding-left: 8px; // Maintain left padding
+      }
     }
   }
 }
 
 .nav {
-  &__menu {
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem; // Removed vertical padding for vertical centering
     display: flex;
-    list-style: none;
-    gap: 2rem;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
     
-    @media (max-width: 768px) {
-      display: none;
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 100%;
-      height: 100vh;
-      background: #fff;
-      flex-direction: column;
-      align-items: center;
+    @media (max-width: $breakpoint-md) {
+      padding: 0 1rem; // Removed vertical padding for vertical centering
+      min-height: 156px; // Match desktop height for full logo
+    }
+  }
+  
+  &__logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    z-index: $z-mobile-menu-toggle;
+    position: relative;
+    padding-top: 0; // Remove top padding for vertical centering
+    padding-left: 8px; // Consistent left padding on all devices
+    
+    @media (max-width: $breakpoint-md) {
+      padding-top: 0; // Remove top padding for vertical centering
+      padding-left: 8px; // Maintain same left padding
+    }
+    
+    &-image {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid rgba(0,0,0,0.35);
+      display: flex;
       justify-content: center;
-      gap: 2rem;
+      align-items: center;
+      box-shadow: 0 0 12px 2px rgba(0,0,0,0.18);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s;
+      transform-origin: top left;
       
-      &--active {
-        display: flex;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));
+      }
+      
+      @media (max-width: $breakpoint-md) {
+        width: 140px;
+        height: 140px;
       }
     }
   }
   
-  &__link {
-    color: $text-color;
-    text-decoration: none;
-    font-weight: 600;
-    position: relative;
+  &__menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1.5rem;
+    align-items: center;
     
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: $primary-color;
-      transition: $transition;
-    }
-    
-    &:hover::after {
-      width: 100%;
+    @media (max-width: $breakpoint-md) {
+      display: none;
     }
   }
   
-  &__toggle {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
+  &__link {
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    font-family: $font-secondary;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
     
-    @media (max-width: 768px) {
-      display: block;
+    &:hover {
+      color: white;
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.1);
     }
   }
 }
@@ -372,6 +653,7 @@ p {
   height: 100vh;
   position: relative;
   overflow: hidden;
+  width: 100vw;
   
   &__overlay {
     position: absolute;
@@ -391,10 +673,23 @@ p {
     padding: 2rem;
     text-align: center;
     color: #fff;
+    
+    // Scale content on larger screens
+    @media (min-width: $breakpoint-lg) {
+      max-width: 1000px;
+    }
+    
+    @media (min-width: 1600px) {
+      max-width: 1400px;
+    }
+    
+    @media (min-width: 1920px) {
+      max-width: 1800px;
+    }
   }
   
   &__title {
-    font-family: $font-beachday;
+    font-family: $font-bread-forest;
     font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
@@ -403,11 +698,33 @@ p {
     @media (max-width: 768px) {
       font-size: 2.5rem;
     }
+    
+    // Scale up font size on larger screens
+    @media (min-width: $breakpoint-lg) {
+      font-size: 4.2rem;
+    }
+    
+    @media (min-width: 1600px) {
+      font-size: 5rem;
+    }
+    
+    @media (min-width: 1920px) {
+      font-size: 5.5rem;
+    }
   }
   
   &__subtitle {
     font-size: 1.25rem;
     margin-bottom: 2rem;
+    
+    // Scale up font size on larger screens
+    @media (min-width: $breakpoint-lg) {
+      font-size: 1.5rem;
+    }
+    
+    @media (min-width: 1600px) {
+      font-size: 1.8rem;
+    }
   }
   
   &__cta {
@@ -460,10 +777,15 @@ p {
   &__content {
     @include grid(1fr);
     gap: 4rem;
+    width: 100%;
     
     @include responsive(lg) {
       grid-template-columns: 6fr 4fr;
       gap: 6rem;
+    }
+    
+    @media (min-width: 1600px) {
+      gap: 8rem;
     }
   }
   
@@ -514,6 +836,7 @@ p {
   &__grid {
     @include grid(1fr);
     gap: 3rem;
+    width: 100%;
     
     @include responsive(md) {
       grid-template-columns: repeat(2, 1fr);
@@ -521,17 +844,30 @@ p {
     
     @include responsive(lg) {
       grid-template-columns: repeat(4, 1fr);
+      gap: 4rem;
+    }
+    
+    @media (min-width: 1600px) {
+      gap: 5rem;
     }
   }
 }
 
 .service {
-  background-color: white;
+  background-color: #fff;
   border-radius: 0.6rem;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   padding: 3rem;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  @media (min-width: $breakpoint-lg) {
+    padding: 4rem;
+  }
+  
+  @media (min-width: 1600px) {
+    padding: 5rem;
+  }
   
   &:hover {
     transform: translateY(-10px);
@@ -543,12 +879,28 @@ p {
     
     svg {
       fill: $primary-color;
+      
+      @media (min-width: $breakpoint-lg) {
+        transform: scale(1.2);
+      }
+      
+      @media (min-width: 1600px) {
+        transform: scale(1.5);
+      }
     }
   }
   
   &__title {
     font-size: 2rem;
     margin-bottom: 1.2rem;
+    
+    @media (min-width: $breakpoint-lg) {
+      font-size: 2.4rem;
+    }
+    
+    @media (min-width: 1600px) {
+      font-size: 2.8rem;
+    }
   }
 }
 
@@ -557,6 +909,18 @@ p {
   position: relative;
   max-width: 80rem;
   margin: 0 auto;
+  
+  @media (min-width: $breakpoint-lg) {
+    max-width: 100rem;
+  }
+  
+  @media (min-width: 1600px) {
+    max-width: 140rem;
+  }
+  
+  @media (min-width: 1920px) {
+    max-width: 180rem;
+  }
   
   &::before {
     content: '';
@@ -687,6 +1051,11 @@ p {
     
     @include responsive(lg) {
       grid-template-columns: repeat(4, 1fr);
+      gap: 4rem;
+    }
+    
+    @media (min-width: 1600px) {
+      gap: 5rem;
     }
   }
 }
@@ -698,14 +1067,38 @@ p {
   padding: 3rem;
   text-align: center;
   
+  @media (min-width: $breakpoint-lg) {
+    padding: 4rem;
+  }
+  
+  @media (min-width: 1600px) {
+    padding: 5rem;
+  }
+  
   &__icon {
     font-size: 4rem;
     margin-bottom: 1.6rem;
+    
+    @media (min-width: $breakpoint-lg) {
+      font-size: 5rem;
+    }
+    
+    @media (min-width: 1600px) {
+      font-size: 6rem;
+    }
   }
   
   &__title {
     font-size: 2rem;
     margin-bottom: 1.2rem;
+    
+    @media (min-width: $breakpoint-lg) {
+      font-size: 2.4rem;
+    }
+    
+    @media (min-width: 1600px) {
+      font-size: 2.8rem;
+    }
   }
 }
 
@@ -718,6 +1111,10 @@ p {
     
     @include responsive(md) {
       grid-template-columns: repeat(3, 1fr);
+    }
+    
+    @media (min-width: 1600px) {
+      gap: 4rem;
     }
   }
   
@@ -865,6 +1262,11 @@ p {
     
     @include responsive(lg) {
       grid-template-columns: repeat(4, 1fr);
+      gap: 3rem;
+    }
+    
+    @media (min-width: 1600px) {
+      gap: 4rem;
     }
   }
   
@@ -1143,8 +1545,8 @@ textarea:focus {
   text-align: center;
 }
 
-.font-beachday {
-  font-family: $font-beachday;
+.font-bread-forest {
+  font-family: $font-bread-forest;
 }
 
 .mb-0 {
@@ -1230,12 +1632,6 @@ textarea:focus {
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12),
                 0 10px 10px rgba(0, 0, 0, 0.08);
   }
-}
-
-@mixin paper-texture {
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E"),
-    linear-gradient(to right, rgba(245, 242, 235, 0.8), rgba(245, 242, 235, 0.8));
-  background-blend-mode: overlay;
 }
 
 @mixin organic-border {
@@ -1451,5 +1847,282 @@ textarea:focus {
     background: $primary-color;
     color: #fff;
     transform: translateY(-2px);
+  }
+}
+
+// Mobile Menu Styles
+.mobile-menu-toggle {
+  display: none !important; // Force hidden on desktop
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1002;
+  position: relative;
+  
+  .hamburger-line {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+    margin: 6px 0; // Proper spacing for hamburger look
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+  
+  &.active {
+    .hamburger-line:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+    
+    .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .hamburger-line:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+  }
+  
+  @media (max-width: $breakpoint-md) {
+    display: block !important; // Show on mobile
+    position: absolute;
+    right: 1rem; // Proper right padding
+    top: 50%;
+    transform: translateY(-50%);
+    height: 21px; // Proper height for 3 lines with spacing
+    width: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba($primary-color, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-100%);
+  transition: all 0.3s ease;
+  
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    z-index: 1001;
+  }
+  
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+  }
+  
+  &__link {
+    color: white;
+    text-decoration: none;
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-family: $font-secondary;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    display: block;
+    padding: 1.5rem 2rem;
+    border-radius: 10px;
+    margin: 0.5rem 0;
+    
+    &:hover {
+      color: $accent-color;
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.1);
+    }
+  }
+}
+
+// Desktop menu styles - removed header compact dependency
+@media (min-width: 769px) {
+  // No special behavior needed
+}
+
+// Make sure all content sections fill the available width
+.content-wrapper {
+  width: 100vw;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+// Process section needs to be wider
+.proceso {
+  width: 100%;
+  
+  &__content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  &__steps {
+    width: 100%;
+    max-width: 1200px;
+    
+    @media (min-width: 1400px) {
+      max-width: 1400px;
+    }
+    
+    @media (min-width: 1600px) {
+      max-width: 1800px;
+    }
+    
+    @media (min-width: 1920px) {
+      max-width: 2000px;
+    }
+  }
+  
+  &__step {
+    width: 100%;
+    
+    img {
+      width: 100%;
+      max-width: 600px;
+      
+      @media (min-width: 1400px) {
+        max-width: 700px;
+      }
+      
+      @media (min-width: 1600px) {
+        max-width: 800px;
+      }
+      
+      @media (min-width: 1920px) {
+        max-width: 900px;
+      }
+    }
+  }
+}
+
+// Ensure timeline elements are larger
+.timeline {
+  &__item {
+    @media (min-width: 1600px) {
+      margin-bottom: 10rem;
+    }
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  &__content {
+    @media (min-width: 1600px) {
+      padding: 4rem;
+    }
+  }
+}
+
+// NUESTRO PROCESO section needs special attention
+#proceso {
+  width: 100vw;
+  max-width: 100%;
+  
+  .container {
+    width: 100%;
+    max-width: 1400px;
+    
+    @media (min-width: 1400px) {
+      max-width: 1600px;
+    }
+    
+    @media (min-width: 1600px) {
+      max-width: 2000px;
+    }
+    
+    @media (min-width: 1920px) {
+      max-width: 2400px;
+    }
+  }
+  
+  .section__title {
+    margin-bottom: 6rem;
+    
+    @media (min-width: 1600px) {
+      margin-bottom: 8rem;
+    }
+  }
+  
+  img {
+    max-width: 100%;
+    
+    @media (min-width: 1400px) {
+      max-width: 120%;
+      margin: 0 -10%;
+    }
+    
+    @media (min-width: 1600px) {
+      max-width: 140%;
+      margin: 0 -20%;
+    }
+  }
+}
+
+// Add or update these mobile fixes
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+    height: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .content-wrapper {
+    width: 100%;
+    overflow-x: hidden; 
+    position: relative;
+  }
+  
+  .hero {
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+  }
+  
+  .mobile-menu {
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1002;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  // Fix for iOS Safari viewport height issue
+  .background-static {
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  
+  .background-container {
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
   }
 }

@@ -1,0 +1,26 @@
+/* Emergency Font Fix */
+@font-face {
+  font-family: 'Bread Forest';
+  src: url('../fonts/bread-forest.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Apply Bread Forest font to ALL text elements */
+body, p, h1, h2, h3, h4, h5, h6, div, span, a, button, input, textarea, select, li, td, th, 
+.section__title, .hero__title, .btn, .nav__link, .footer__tagline {
+  font-family: 'Bread Forest', cursive !important;
+}
+
+/* Background fix */
+.background-static {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url('../img/hero.webp') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  z-index: -101;
+} 
