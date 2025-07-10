@@ -1,0 +1,56 @@
+/* Context7 Optimized Font Loading */
+
+/* Primary font with optimized loading */
+@font-face {
+  font-family: 'Bread Forest';
+  src: url('./bread-forest.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Critical for Core Web Vitals */
+}
+
+/* Fallback font stack for instant text rendering */
+.font-bread-forest,
+h1, h2, h3,
+.hero__title,
+.section__title {
+  font-family: 'Bread Forest', 
+               'Comic Sans MS', 
+               -apple-system, 
+               BlinkMacSystemFont, 
+               'Segoe UI', 
+               system-ui, 
+               sans-serif;
+}
+
+/* Optimize font loading with CSS Font Loading API */
+@supports (font-display: swap) {
+  @font-face {
+    font-family: 'Bread Forest';
+    src: url('./bread-forest.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+}
+
+/* Progressive enhancement for font loading */
+.fonts-loading .font-bread-forest {
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+
+.fonts-loaded .font-bread-forest {
+  font-family: 'Bread Forest', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+
+/* Reduce layout shifts during font loading */
+.hero__title {
+  font-size: clamp(2.5rem, 5vw, 5.5rem);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.section__title {
+  font-size: clamp(2rem, 4vw, 6rem);
+  line-height: 1.2;
+} 

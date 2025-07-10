@@ -56,8 +56,21 @@
   
   <!-- Preload critical assets -->
   <link rel="preload" href="fonts/bread-forest.otf?v=1751988840" as="font" type="font/otf" crossorigin>
+  <!-- Critical CSS -->
+  <style>
+    /* Critical above-the-fold styles */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    .header { position: fixed; top: 0; width: 100%; z-index: 1000; background: transparent; height: 150px; display: flex; align-items: center; }
+    .header--scrolled { height: 86px; background: rgba(44,85,48,.15); backdrop-filter: blur(10px); }
+    .header--scrolled .nav__logo-image { transform: scale(0.5) translateZ(0); transform-origin: top left !important; }
+    .nav__logo-image { width: 140px; height: 140px; border-radius: 50%; transition: transform .7s ease; }
+    .hero { height: 100vh; position: relative; overflow: hidden; }
+    .background-container { position: fixed; width: 100%; height: 100%; z-index: -100; }
+  </style>
+  
   <!-- CSS -->
   <link rel="stylesheet" href="css/styles.css?v=1751988840">
+  <link rel="stylesheet" href="css/performance-fix.css?v=1751988840">
   <!-- Preload video for better performance -->
   <link rel="preload" href="img/tomasverde.mp4" as="video" type="video/mp4">
   
@@ -86,13 +99,14 @@
   <!-- Google Fonts - Optimized -->
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap&text=TomasVerdeReciclajeOrganicoPichilemu" rel="stylesheet">
   
-  <!-- Consolidated font styles -->
-  <link rel="stylesheet" href="fonts/fonts.css?v=1751988840">
+  <!-- Optimized font loading -->
+  <link rel="stylesheet" href="fonts/fonts-optimized.css?v=1751988840">
   <!-- Emergency font and background fix -->
   <link rel="stylesheet" href="css/fonts-fix.css?v=1751988840">
   
   <!-- Main JavaScript -->
   <script src="js/main.js?v=1751988840"></script>
+  <script src="js/performance-optimized.js?v=1751988840"></script>
   <script src="js/loading-fix.js?v=1751988840"></script>
   <script src="js/performance-monitor.js?v=1751988840"></script>
   <script src="js/debug.js?v=1751988840"></script>
